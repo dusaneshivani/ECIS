@@ -21,32 +21,32 @@
 #include "hcsr04.h"
 
 
-DistMeasure::DistMeasure(PinName TrigPin,PinName EchoPin):
+HCSR04::HCSR04(PinName TrigPin,PinName EchoPin):
     trigger(TrigPin), echo(EchoPin)
 {
     pulsetime.stop();
     pulsetime.reset();
-    echo.rise(this,&DistMeasure::isr_rise);
-    echo.fall(this,&DistMeasure::isr_fall);
+    echo.rise(this,&HCSR04::isr_rise);
+    echo.fall(this,&HCSR04::isr_fall);
     trigger=0;
 }
 
-DistMeasure::~DistMeasure()
+HCSR04::~HCSR04()
 {
 }
 
-void DistMeasure::isr_rise(void)
+void HCSR04::isr_rise(void)
 {
     pulsetime.start();
 }
-void DistMeasure::start(void)
+void HCSR04::start(void)
 {
     trigger=1;
     wait_us(10);
     trigger=0;
 }
 
-void DistMeasure::isr_fall(void)
+void HCSR04::isr_fall(void)
 {
     pulsetime.stop();
     pulsedur = pulsetime.read_us();
@@ -54,20 +54,20 @@ void DistMeasure::isr_fall(void)
     pulsetime.reset();
 }
 
-void DistMeasure::rise (void (*fptr)(void))
+void HCSR04::rise (void (*fptr)(void))
 {
     echo.rise(fptr);
 }
-void DistMeasure::fall (void (*fptr)(void))
+void HCSR04::fall (void (*fptr)(void))
 {
     echo.fall(fptr);
 }
 
-unsigned int DistMeasure::get_dist_cm()
+unsigned int HCSR04::get_dist_cm()
 {
     return distance;
 }
-unsigned int DistMeasure::get_pulse_us()
+unsigned int HCSR04::get_pulse_us()
 {
     return pulsedur;
 }
@@ -78,7 +78,7 @@ unsigned int DistMeasure::get_pulse_us()
    Here is a sample code usage
 ********************************************************* 
 #include "hcsr04.h"
-DistMeasure  usensor(p25,p6);
+HCSR04  usensor(p25,p6);
 int main()
 {
     unsigned char count=0;

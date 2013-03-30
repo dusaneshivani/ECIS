@@ -29,14 +29,14 @@
 /** Distance Measure Class(es)
  */
 
-class DistMeasure
+class HCSR04
 {
 public:
-    /** Create a DistMeasure object connected to the specified pin
+    /** Create a HCSR04 object connected to the specified pin
     * @param pin i/o pin to connect to
     */
-    DistMeasure(PinName TrigPin,PinName EchoPin);
-    ~DistMeasure();
+    HCSR04(PinName TrigPin,PinName EchoPin);
+    ~HCSR04();
 
     /** Return the distance from obstacle in cm
     * @param distance in cms and returns -1, in case of failure
