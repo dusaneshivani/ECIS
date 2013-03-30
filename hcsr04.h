@@ -26,7 +26,7 @@
 
 #include "mbed.h"
 
-/** Distance Measure Class(es)
+/** HCSR04 Class(es)
  */
 
 class HCSR04
@@ -43,11 +43,11 @@ public:
     */
     unsigned int get_dist_cm(void);
     /** Return the pulse duration equal to sonic waves travelling to obstacle and back to receiver.
-    * @param pulse duration in microseconds. 
-    */    
+    * @param pulse duration in microseconds.
+    */
     unsigned int get_pulse_us(void);
     /** Generates the trigger pulse of 10us on the trigger PIN.
-    */      
+    */
     void start(void );
     void isr_rise(void);
     void isr_fall(void);
