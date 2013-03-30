@@ -26,8 +26,8 @@ DistMeasure::DistMeasure(PinName TrigPin,PinName EchoPin,unsigned int maxtime):
 {
     pulsetime.stop();
     pulsetime.reset();
-   // this.rise(&DistMeasure::isr_rise);
-   // this.fall(&DistMeasure::isr_fall);    
+    echo.rise(this,&DistMeasure::isr_rise);
+    echo.fall(this,&DistMeasure::isr_fall);    
 }
 
 
