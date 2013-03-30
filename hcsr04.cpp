@@ -71,3 +71,28 @@ unsigned int DistMeasure::get_pulse_us()
 {
     return pulsedur;
 }
+
+
+
+/*******************************************************
+   Here is a sample code usage
+********************************************************* 
+#include "hcsr04.h"
+DistMeasure  usensor(p25,p6);
+int main()
+{
+    unsigned char count=0;
+    while(1) {
+        usensor.start();
+        wait_ms(500); 
+        dist=usensor.get_dist_cm();
+        lcd.cls();
+        lcd.locate(0,0);
+        lcd.printf("cm:%ld",dist );
+ 
+        count++;
+        lcd.locate(0,1);
+        lcd.printf("Distance =%d",count);
+        
+    }
+*/
