@@ -53,7 +53,7 @@ void DistMeasure::isr_fall(void)
     distance= (pulsedur*343)/20000;
     pulsetime.reset();
 }
- 
+
 void DistMeasure::rise (void (*fptr)(void))
 {
     echo.rise(fptr);
