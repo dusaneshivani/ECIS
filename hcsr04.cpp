@@ -21,24 +21,29 @@
 #include "hcsr04.h"
 
 
-DistMeasure::DistMeasure(PinName TrigPin,PinName EchoPin,unsigned int maxtime):
-    trigger(TrigPin), echo(EchoPin), timeout(maxtime)
+DistMeasure::DistMeasure(PinName TrigPin,PinName EchoPin):
+    trigger(TrigPin), echo(EchoPin)
 {
     pulsetime.stop();
     pulsetime.reset();
     echo.rise(this,&DistMeasure::isr_rise);
-    echo.fall(this,&DistMeasure::isr_fall);    
+    echo.fall(this,&DistMeasure::isr_fall);
+    trigger=0;
 }
-
 
 DistMeasure::~DistMeasure()
 {
 }
 
- 
 void DistMeasure::isr_rise(void)
 {
     pulsetime.start();
+}
+void DistMeasure::start_measurement(void)
+{
+    trigger=1;
+    wait_us(10);
+    trigger=0;
 }
 
 void DistMeasure::isr_fall(void)
@@ -48,6 +53,7 @@ void DistMeasure::isr_fall(void)
     distance= (pulsedur*343)/20000;
     pulsetime.reset();
 }
+ 
 void DistMeasure::rise (void (*fptr)(void))
 {
     echo.rise(fptr);
@@ -57,11 +63,11 @@ void DistMeasure::fall (void (*fptr)(void))
     echo.fall(fptr);
 }
 
-unsigned int DistMeasure::get_distance_cm()
+unsigned int DistMeasure::get_dist_cm()
 {
-    if(distance > 65530) {
-        return -1;
-    } else {
-        return distance;
-    }
+    return distance;
+}
+unsigned int DistMeasure::get_pulse_us()
+{
+    return pulsedur;
 }

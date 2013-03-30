@@ -35,14 +35,16 @@ public:
     /** Create a DistMeasure object connected to the specified pin
     * @param pin i/o pin to connect to
     */
-    DistMeasure(PinName TrigPin,PinName EchoPin,unsigned int maxtime);
+    DistMeasure(PinName TrigPin,PinName EchoPin);
     ~DistMeasure();
 
     /** Return the distance from obstacle in cm
     * @param distance in cms and returns -1, in case of failure
     */
  
-    unsigned int get_distance_cm(void);
+    unsigned int get_dist_cm(void);
+    unsigned int get_pulse_us(void);
+    void start_measurement(void );
     void isr_rise(void);
     void isr_fall(void);
     void fall (void (*fptr)(void));
@@ -55,7 +57,6 @@ private:
     Timer pulsetime;
     DigitalOut  trigger;
     InterruptIn echo;
-    unsigned int timeout;
     unsigned int pulsedur;
     unsigned int distance;    
 };
