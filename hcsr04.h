@@ -44,7 +44,7 @@ public:
  
     unsigned int get_dist_cm(void);
     unsigned int get_pulse_us(void);
-    void start_measurement(void );
+    void start(void );
     void isr_rise(void);
     void isr_fall(void);
     void fall (void (*fptr)(void));

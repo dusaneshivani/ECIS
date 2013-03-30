@@ -39,7 +39,7 @@ void DistMeasure::isr_rise(void)
 {
     pulsetime.start();
 }
-void DistMeasure::start_measurement(void)
+void DistMeasure::start(void)
 {
     trigger=1;
     wait_us(10);
