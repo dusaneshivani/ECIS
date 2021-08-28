@@ -118,8 +118,9 @@ void wifi_send(void)
         wait(1);
         
     //Pushing the data acquired from HC-SR04 Ultrasonic Sensor to Cloud Server via API
+    //Replace with your own API Request - Write a Channel Feed below
         pc.printf("Product X - Sensor 1: \n\r");
-        sprintf(snd,"\rhttps://api.thingspeak.com/update?api_key=O59NSRSQZCJ2G6WK&field1=%f\r", dist_percent1);
+        sprintf(snd,"\r ***Replace with your own API Request - Write a Channel Feed below*** \r", dist_percent1);
         printf("Percent Stock X Remaining: %f\n\r", dist_percent1);
         wifi.SendCMD(snd);
         pc.printf("%s\r",snd);
